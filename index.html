@@ -40,10 +40,8 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             transition: background 1.2s ease;
-            cursor: default;
         }
 
-        /* ── Canvas Background ───────────────────── */
         #particleCanvas {
             position: fixed;
             top: 0;
@@ -55,13 +53,11 @@
             opacity: 0.7;
         }
 
-        /* ── Main Wrapper ───────────────────────── */
         .main-wrapper {
             position: relative;
             z-index: 1;
         }
 
-        /* ── Navbar ─────────────────────────────── */
         .navbar {
             position: fixed;
             top: 0;
@@ -91,7 +87,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            transition: all 0.4s;
         }
         .navbar .search-container {
             display: flex;
@@ -157,7 +152,6 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
-        /* ── Sections ───────────────────────────── */
         .section {
             min-height: 100vh;
             display: flex;
@@ -200,7 +194,6 @@
             padding-bottom: 120px;
         }
 
-        /* ── Hero ────────────────────────────────── */
         .hero-weather-icon {
             width: 140px;
             height: 140px;
@@ -271,7 +264,6 @@
             fill: none;
         }
 
-        /* ── Section Titles ─────────────────────── */
         .section-title {
             font-size: 1.8rem;
             font-weight: 600;
@@ -293,7 +285,6 @@
             opacity: 0.7;
         }
 
-        /* ── Glass Card ─────────────────────────── */
         .glass-card {
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
@@ -310,7 +301,6 @@
             border-color: rgba(255, 255, 255, 0.25);
         }
 
-        /* ── Hourly Scroll ──────────────────────── */
         .hourly-scroll {
             display: flex;
             gap: 14px;
@@ -341,7 +331,6 @@
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
             transition: all 0.35s ease;
-            cursor: default;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
@@ -372,7 +361,6 @@
             margin-top: 2px;
         }
 
-        /* ── Daily Forecast ─────────────────────── */
         .daily-list {
             display: flex;
             flex-direction: column;
@@ -433,7 +421,6 @@
             transition: width 0.6s ease;
         }
 
-        /* ── Details Grid ───────────────────────── */
         .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -473,7 +460,6 @@
             margin-top: 4px;
         }
 
-        /* ── Sunrise/Sunset Arc ─────────────────── */
         .sun-arc-container {
             position: relative;
             width: 100%;
@@ -520,7 +506,6 @@
             text-anchor: middle;
         }
 
-        /* ── AQI ────────────────────────────────── */
         .aqi-display {
             display: flex;
             align-items: center;
@@ -541,7 +526,6 @@
             letter-spacing: -1px;
             border: 4px solid;
             transition: all 0.5s;
-            position: relative;
         }
         .aqi-circle.good {
             border-color: #4caf84;
@@ -579,7 +563,6 @@
             font-size: 0.9rem;
         }
 
-        /* ── Reveal Animation ──────────────────── */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -590,7 +573,6 @@
             transform: translateY(0);
         }
 
-        /* ── Loading Spinner ───────────────────── */
         .loading-overlay {
             position: fixed;
             inset: 0;
@@ -620,7 +602,6 @@
             }
         }
 
-        /* ── Responsive ────────────────────────── */
         @media (max-width: 768px) {
             .navbar {
                 padding: 10px 14px;
@@ -691,17 +672,12 @@
     </style>
 </head>
 <body>
-    <!-- Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
-
-    <!-- Loading -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loader-ring"></div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-wrapper">
-        <!-- Navbar -->
         <nav class="navbar" id="navbar">
             <span class="logo">☁️ WeatherVue</span>
             <div class="search-container">
@@ -713,67 +689,49 @@
             </div>
         </nav>
 
-        <!-- Hero Section -->
         <section class="section section-hero" id="heroSection">
-            <div class="reveal" style="transition-delay: 0.1s;">
-                <div class="hero-weather-icon" id="heroIcon">
-                    <!-- SVG injected dynamically -->
-                </div>
-            </div>
-            <div class="reveal" style="transition-delay: 0.2s;">
-                <h1 class="hero-temp" id="heroTemp">--°</h1>
-            </div>
-            <div class="reveal" style="transition-delay: 0.3s;">
-                <p class="hero-desc" id="heroDesc">Loading...</p>
-            </div>
-            <div class="reveal" style="transition-delay: 0.35s;">
-                <p class="hero-location" id="heroLocation">📍 --</p>
-            </div>
-            <div class="reveal" style="transition-delay: 0.4s;">
-                <p class="hero-feels" id="heroFeels">Feels like --</p>
-            </div>
+            <div class="reveal"><div class="hero-weather-icon" id="heroIcon"></div></div>
+            <div class="reveal"><h1 class="hero-temp" id="heroTemp">--°</h1></div>
+            <div class="reveal"><p class="hero-desc" id="heroDesc">Loading...</p></div>
+            <div class="reveal"><p class="hero-location" id="heroLocation">📍 --</p></div>
+            <div class="reveal"><p class="hero-feels" id="heroFeels">Feels like --</p></div>
             <div class="scroll-indicator" onclick="document.getElementById('hourlySection').scrollIntoView({behavior:'smooth'})">
                 <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
             </div>
         </section>
 
-        <!-- Hourly Forecast -->
         <section class="section section-hourly" id="hourlySection">
             <h2 class="section-title reveal">Hourly Forecast</h2>
             <div class="hourly-scroll reveal" id="hourlyScroll"></div>
         </section>
 
-        <!-- Daily Forecast -->
         <section class="section section-daily" id="dailySection">
             <h2 class="section-title reveal">7-Day Forecast</h2>
             <div class="daily-list reveal" id="dailyList"></div>
         </section>
 
-        <!-- Details Grid -->
         <section class="section section-details" id="detailsSection">
             <h2 class="section-title reveal">Weather Details</h2>
             <div class="details-grid reveal" id="detailsGrid"></div>
         </section>
 
-        <!-- Sunrise & Sunset -->
         <section class="section section-sun" id="sunSection">
             <h2 class="section-title reveal">Sunrise & Sunset</h2>
-            <div class="sun-arc-container reveal" id="sunArcContainer">
+            <div class="sun-arc-container reveal">
                 <svg class="sun-arc-svg" viewBox="0 0 500 180" id="sunArcSvg">
-                    <path class="sun-arc-path" id="sunArcPath" d="M 40 160 Q 250 -20 460 160"/>
+                    <path class="sun-arc-path" d="M 40 160 Q 250 -20 460 160"/>
                     <circle class="sun-dot" id="sunDot" cx="250" cy="70" r="10" fill="#ffb347"/>
-                    <text class="sun-time-label" id="sunriseLabel" x="50" y="175">Sunrise</text>
+                    <text class="sun-time-label" x="50" y="175">Sunrise</text>
                     <text class="sun-time-value" id="sunriseValue" x="50" y="155">--:--</text>
-                    <text class="sun-time-label" id="sunsetLabel" x="450" y="175">Sunset</text>
+                    <text class="sun-time-label" x="450" y="175">Sunset</text>
                     <text class="sun-time-value" id="sunsetValue" x="450" y="155">--:--</text>
                 </svg>
             </div>
         </section>
 
-        <!-- Air Quality -->
         <section class="section section-air" id="airSection">
             <h2 class="section-title reveal">Air Quality</h2>
-            <div class="aqi-display reveal" id="aqiDisplay">
+            <div class="aqi-display reveal">
                 <div class="aqi-circle good" id="aqiCircle">
                     <span id="aqiValue">--</span>
                     <span class="aqi-label" id="aqiCategory">AQI</span>
@@ -794,11 +752,11 @@
                 cityName: 'New York',
                 country: 'US',
                 timezone: 'America/New_York',
-                unit: 'celsius', // 'celsius' | 'fahrenheit'
+                unit: 'celsius',
                 weatherData: null,
                 airQualityData: null,
                 particles: [],
-                particleType: 'sparkle', // 'sparkle' | 'rain' | 'snow' | 'mist'
+                particleType: 'sparkle',
                 canvasCtx: null,
                 canvasWidth: 0,
                 canvasHeight: 0,
@@ -809,8 +767,6 @@
             // DOM REFS
             // ──────────────────────────────────────
             const $ = (sel) => document.querySelector(sel);
-            const $$ = (sel) => document.querySelectorAll(sel);
-
             const loadingOverlay = $('#loadingOverlay');
             const navbar = $('#navbar');
             const searchInput = $('#searchInput');
@@ -824,7 +780,6 @@
             const hourlyScroll = $('#hourlyScroll');
             const dailyList = $('#dailyList');
             const detailsGrid = $('#detailsGrid');
-            const sunArcSvg = $('#sunArcSvg');
             const sunDot = $('#sunDot');
             const sunriseValue = $('#sunriseValue');
             const sunsetValue = $('#sunsetValue');
@@ -838,43 +793,20 @@
             // UTILITY FUNCTIONS
             // ──────────────────────────────────────
             function tempCtoF(c) { return Math.round(c * 9 / 5 + 32); }
-
-            function formatTemp(c) {
-                if (state.unit === 'fahrenheit') return tempCtoF(c) + '°F';
-                return Math.round(c) + '°C';
-            }
-
-            function formatTempShort(c) {
-                if (state.unit === 'fahrenheit') return tempCtoF(c) + '°';
-                return Math.round(c) + '°';
-            }
+            function formatTemp(c) { return state.unit === 'fahrenheit' ? tempCtoF(c) + '°F' : Math.round(c) + '°C'; }
+            function formatTempShort(c) { return state.unit === 'fahrenheit' ? tempCtoF(c) + '°' : Math.round(c) + '°'; }
 
             function getWeatherDescription(code) {
                 const map = {
-                    0: 'Clear Sky',
-                    1: 'Mostly Clear',
-                    2: 'Partly Cloudy',
-                    3: 'Overcast',
-                    45: 'Fog',
-                    48: 'Depositing Rime Fog',
-                    51: 'Light Drizzle',
-                    53: 'Moderate Drizzle',
-                    55: 'Dense Drizzle',
-                    61: 'Slight Rain',
-                    63: 'Moderate Rain',
-                    65: 'Heavy Rain',
-                    71: 'Slight Snow',
-                    73: 'Moderate Snow',
-                    75: 'Heavy Snow',
+                    0: 'Clear Sky', 1: 'Mostly Clear', 2: 'Partly Cloudy', 3: 'Overcast',
+                    45: 'Fog', 48: 'Depositing Rime Fog',
+                    51: 'Light Drizzle', 53: 'Moderate Drizzle', 55: 'Dense Drizzle',
+                    61: 'Slight Rain', 63: 'Moderate Rain', 65: 'Heavy Rain',
+                    71: 'Slight Snow', 73: 'Moderate Snow', 75: 'Heavy Snow',
                     77: 'Snow Grains',
-                    80: 'Slight Rain Showers',
-                    81: 'Moderate Rain Showers',
-                    82: 'Violent Rain Showers',
-                    85: 'Slight Snow Showers',
-                    86: 'Heavy Snow Showers',
-                    95: 'Thunderstorm',
-                    96: 'Thunderstorm + Hail',
-                    99: 'Severe Thunderstorm',
+                    80: 'Slight Rain Showers', 81: 'Moderate Rain Showers', 82: 'Violent Rain Showers',
+                    85: 'Slight Snow Showers', 86: 'Heavy Snow Showers',
+                    95: 'Thunderstorm', 96: 'Thunderstorm + Hail', 99: 'Severe Thunderstorm',
                 };
                 return map[code] || 'Unknown';
             }
@@ -895,91 +827,59 @@
 
             function getParticleType(weatherType) {
                 switch (weatherType) {
-                    case 'rain':
-                    case 'drizzle':
-                    case 'thunderstorm':
-                        return 'rain';
-                    case 'snow':
-                        return 'snow';
-                    case 'fog':
-                        return 'mist';
-                    case 'clear':
-                    case 'partly-cloudy':
-                    default:
-                        return 'sparkle';
+                    case 'rain': case 'drizzle': case 'thunderstorm': return 'rain';
+                    case 'snow': return 'snow';
+                    case 'fog': return 'mist';
+                    default: return 'sparkle';
                 }
             }
 
             // ──────────────────────────────────────
-            // WEATHER ICON SVG GENERATOR
+            // WEATHER ICON SVG (BUG-FREE)
             // ──────────────────────────────────────
             function getWeatherIconSVG(weatherType, size = 140) {
                 const sz = size;
-                const half = sz / 2;
                 switch (weatherType) {
                     case 'clear':
-                        return `
-                <svg width="${sz}" height="${sz}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <defs><radialGradient id="sunGrad"><stop offset="0%" stop-color="#fff7a0"/><stop offset="60%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ff8c00"/></radialGradient></defs>
-                  <circle cx="50" cy="50" r="22" fill="url(#sunGrad)" class="sun-core">
-                    <animate attributeName="r" values="22;25;22" dur="3s" repeatCount="indefinite"/>
-                  </circle>
-                  ${[0,45,90,135,180,225,270,315].map(a=>`<line x1="50" y1="14" x2="50" y2="6" stroke="#ffb347" stroke-width="3" stroke-linecap="round" transform="rotate(${a} 50 50)" opacity="0.7"><animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite"/></line>`).join('')}
-                </svg>`;
+                        return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">
+                            <defs><radialGradient id="sunGrad"><stop offset="0%" stop-color="#fff7a0"/><stop offset="60%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ff8c00"/></radialGradient></defs>
+                            <circle cx="50" cy="50" r="22" fill="url(#sunGrad)"><animate attributeName="r" values="22;25;22" dur="3s" repeatCount="indefinite"/></circle>
+                            ${[0,45,90,135,180,225,270,315].map(a=>`<line x1="50" y1="14" x2="50" y2="6" stroke="#ffb347" stroke-width="3" stroke-linecap="round" transform="rotate(${a} 50 50)" opacity="0.7"><animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite"/></line>`).join('')}
+                        </svg>`;
                     case 'partly-cloudy':
-                        return `
-                <svg width="${sz}" height="${sz}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="38" cy="40" r="16" fill="#ffb347" opacity="0.9"><animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite"/></circle>
-                  <g opacity="0.95">
-                    <ellipse cx="55" cy="50" rx="24" ry="15" fill="#e8e8e8"/><ellipse cx="42" cy="53" rx="18" ry="12" fill="#f0f0f0"/><ellipse cx="62" cy="48" rx="16" ry="11" fill="#ddd"/>
-                    <animateTransform attributeName="transform" type="translate" values="0,0;3,-2;0,0;-3,2;0,0" dur="6s" repeatCount="indefinite"/>
-                  </g>
-                </svg>`;
+                        return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">
+                            <circle cx="38" cy="40" r="16" fill="#ffb347" opacity="0.9"><animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite"/></circle>
+                            <g opacity="0.95">
+                                <ellipse cx="55" cy="50" rx="24" ry="15" fill="#e8e8e8"/><ellipse cx="42" cy="53" rx="18" ry="12" fill="#f0f0f0"/><ellipse cx="62" cy="48" rx="16" ry="11" fill="#ddd"/>
+                                <animateTransform attributeName="transform" type="translate" values="0,0;3,-2;0,0;-3,2;0,0" dur="6s" repeatCount="indefinite"/>
+                            </g>
+                        </svg>`;
                     case 'cloudy':
-                        return `
-                <svg width="${sz}" height="${sz}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <g>
-                    <ellipse cx="50" cy="48" rx="28" ry="17" fill="#d0d0d0"/><ellipse cx="35" cy="52" rx="20" ry="13" fill="#ddd"/><ellipse cx="62" cy="44" rx="18" ry="12" fill="#c8c8c8"/>
-                    <animateTransform attributeName="transform" type="translate" values="0,0;4,-3;0,0;-4,3;0,0" dur="7s" repeatCount="indefinite"/>
-                  </g>
-                </svg>`;
-                    case 'rain':
-                    case 'drizzle':
-                        return `
-                <svg width="${sz}" height="${sz}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <g><ellipse cx="50" cy="35" rx="26" ry="15" fill="#b0b8c0"/><ellipse cx="38" cy="38" rx="18" ry="12" fill="#c0c8d0"/></g>
-                  ${[
-                    {x:32,y:55,d:0.6},{x:42,y:62,d:0.9},{x:52,y:52,d:0.5},{x:60,y:60,d:0.7},{x:38,y:70,d:1.1}
-                  ].map(r=>`<line x1="${r.x}" y1="${r.y}" x2="${r.x-2}" y2="${r.y+10}" stroke="#5b9bd5" stroke-width="2.5" stroke-linecap="round" opacity="0.8"><animate attributeName="y1" values="${r.y};${r.y+14};${r.y}" dur="${1+r.d}" repeatCount="indefinite"/><animate attributeName="y2" values="${r.y+10};${r.y+24};${r.y+10}" dur="${1+r.d}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0.3;0.8" dur="${1+r.d}" repeatCount="indefinite"/></line>`).join('')}
-                </svg>`;
+                        return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">
+                            <g><ellipse cx="50" cy="48" rx="28" ry="17" fill="#d0d0d0"/><ellipse cx="35" cy="52" rx="20" ry="13" fill="#ddd"/><ellipse cx="62" cy="44" rx="18" ry="12" fill="#c8c8c8"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;4,-3;0,0;-4,3;0,0" dur="7s" repeatCount="indefinite"/></g>
+                        </svg>`;
+                    case 'rain': case 'drizzle':
+                        return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">
+                            <g><ellipse cx="50" cy="35" rx="26" ry="15" fill="#b0b8c0"/><ellipse cx="38" cy="38" rx="18" ry="12" fill="#c0c8d0"/></g>
+                            ${[{x:32,y:55,d:0.6},{x:42,y:62,d:0.9},{x:52,y:52,d:0.5},{x:60,y:60,d:0.7},{x:38,y:70,d:1.1}].map(r=>`<line x1="${r.x}" y1="${r.y}" x2="${r.x-2}" y2="${r.y+10}" stroke="#5b9bd5" stroke-width="2.5" stroke-linecap="round" opacity="0.8"><animate attributeName="y1" values="${r.y};${r.y+14};${r.y}" dur="${1+r.d}" repeatCount="indefinite"/><animate attributeName="y2" values="${r.y+10};${r.y+24};${r.y+10}" dur="${1+r.d}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0.3;0.8" dur="${1+r.d}" repeatCount="indefinite"/></line>`).join('')}
+                        </svg>`;
                     case 'thunderstorm':
-                        return `
-                <svg width="${sz}" height="${sz}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <g><ellipse cx="50" cy="32" rx="28" ry="16" fill="#6b6b7a"/><ellipse cx="38" cy="36" rx="18" ry="12" fill="#7a7a8a"/></g>
-                  <polygon points="48,44 40,58 46,58 38,74 54,54 48,54 56,44" fill="#ffd700" opacity="0.9">
-                    <animate attributeName="opacity" values="0.9;0;0.9;0.9;0.9;0;0.9" dur="4s" repeatCount="indefinite"/>
-                  </polygon>
-                  ${[
-                    {x:28,y:60,d:0.7},{x:55,y:62,d:0.5},{x:35,y:68,d:0.8},{x:50,y:55,d:0.6}
-                  ].map(r=>`<line x1="${r.x}" y1="${r.y}" x2="${r.x-1}" y2="${r.y+9}" stroke="#5b9bd5" stroke-width="2" stroke-linecap="round" opacity="0.7"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="${0.8+r.d}" repeatCount="indefinite"/></line>`).join('')}
-                </svg>`;
+                        return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">
+                            <g><ellipse cx="50" cy="32" rx="28" ry="16" fill="#6b6b7a"/><ellipse cx="38" cy="36" rx="18" ry="12" fill="#7a7a8a"/></g>
+                            <polygon points="48,44 40,58 46,58 38,74 54,54 48,54 56,44" fill="#ffd700" opacity="0.9"><animate attributeName="opacity" values="0.9;0;0.9;0.9;0.9;0;0.9" dur="4s" repeatCount="indefinite"/></polygon>
+                            ${[{x:28,y:60,d:0.7},{x:55,y:62,d:0.5},{x:35,y:68,d:0.8},{x:50,y:55,d:0.6}].map(r=>`<line x1="${r.x}" y1="${r.y}" x2="${r.x-1}" y2="${r.y+9}" stroke="#5b9bd5" stroke-width="2" stroke-linecap="round" opacity="0.7"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="${0.8+r.d}" repeatCount="indefinite"/></line>`).join('')}
+                        </svg>`;
                     case 'snow':
-                        return `
-                <svg width="${sz}" height="${sz}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <g><ellipse cx="50" cy="34" rx="26" ry="15" fill="#c8d0d8"/></g>
-                  ${[
-                    {x:30,y:55,d:1.5},{x:45,y:62,d:2},{x:55,y:50,d:1.2},{x:38,y:70,d:1.8},{x:58,y:58,d:1.6},{x:42,y:48,d:2.2}
-                  ].map(s=>`<circle cx="${s.x}" cy="${s.y}" r="4" fill="#fff" opacity="0.85"><animate attributeName="cy" values="${s.y};${s.y+16};${s.y}" dur="${s.d}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.85;0;0.85" dur="${s.d}" repeatCount="indefinite"/></circle>`).join('')}
-                </svg>`;
+                        return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">
+                            <g><ellipse cx="50" cy="34" rx="26" ry="15" fill="#c8d0d8"/></g>
+                            ${[{x:30,y:55,d:1.5},{x:45,y:62,d:2},{x:55,y:50,d:1.2},{x:38,y:70,d:1.8},{x:58,y:58,d:1.6},{x:42,y:48,d:2.2}].map(s=>`<circle cx="${s.x}" cy="${s.y}" r="4" fill="#fff" opacity="0.85"><animate attributeName="cy" values="${s.y};${s.y+16};${s.y}" dur="${s.d}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.85;0;0.85" dur="${s.d}" repeatCount="indefinite"/></circle>`).join('')}
+                        </svg>`;
                     case 'fog':
-                        return `
-                <svg width="${sz}" height="${sz}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  ${[
-                    {y:35,w:50,d:4},{y:48,w:60,d:5},{y:60,w:44,d:3.5},{y:72,w:55,d:4.5}
-                  ].map(l=>`<rect x="${(100-l.w)/2}" y="${l.y}" width="${l.w}" height="6" rx="3" fill="rgba(200,210,220,0.5)"><animate attributeName="opacity" values="0.5;0.15;0.5" dur="${l.d}" repeatCount="indefinite"/><animate attributeName="x" values="${(100-l.w)/2};${(100-l.w)/2+8};${(100-l.w)/2}" dur="${l.d}" repeatCount="indefinite"/></rect>`).join('')}
-                </svg>`;
-                    default:
-                        return getWeatherIconSVG('cloudy', sz);
+                        return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">
+                            ${[{y:35,w:50,d:4},{y:48,w:60,d:5},{y:60,w:44,d:3.5},{y:72,w:55,d:4.5}].map(l=>`<rect x="${(100-l.w)/2}" y="${l.y}" width="${l.w}" height="6" rx="3" fill="rgba(200,210,220,0.5)"><animate attributeName="opacity" values="0.5;0.15;0.5" dur="${l.d}" repeatCount="indefinite"/><animate attributeName="x" values="${(100-l.w)/2};${(100-l.w)/2+8};${(100-l.w)/2}" dur="${l.d}" repeatCount="indefinite"/></rect>`).join('')}
+                        </svg>`;
+                    default: return getWeatherIconSVG('cloudy', sz);
                 }
             }
 
@@ -988,7 +888,7 @@
             }
 
             // ──────────────────────────────────────
-            // PARTICLE SYSTEM
+            // PARTICLE SYSTEM (UPDATED CLEAN)
             // ──────────────────────────────────────
             function initParticleCanvas() {
                 const canvas = particleCanvas;
@@ -1015,16 +915,13 @@
                             y: Math.random() * state.canvasHeight,
                             size: state.particleType === 'rain' ? Math.random() * 2 + 1 :
                                 state.particleType === 'snow' ? Math.random() * 5 + 2 :
-                                state.particleType === 'mist' ? Math.random() * 40 + 20 :
-                                Math.random() * 3 + 1,
+                                state.particleType === 'mist' ? Math.random() * 40 + 20 : Math.random() * 3 + 1,
                             speedY: state.particleType === 'rain' ? Math.random() * 6 + 8 :
                                 state.particleType === 'snow' ? Math.random() * 1.5 + 0.5 :
-                                state.particleType === 'mist' ? Math.random() * 0.3 + 0.1 :
-                                Math.random() * 1.2 + 0.4,
+                                state.particleType === 'mist' ? Math.random() * 0.3 + 0.1 : Math.random() * 1.2 + 0.4,
                             speedX: state.particleType === 'rain' ? 0 :
                                 state.particleType === 'snow' ? Math.random() * 0.8 - 0.4 :
-                                state.particleType === 'mist' ? Math.random() * 0.4 - 0.2 :
-                                Math.random() * 0.6 - 0.3,
+                                state.particleType === 'mist' ? Math.random() * 0.4 - 0.2 : Math.random() * 0.6 - 0.3,
                             opacity: Math.random() * 0.7 + 0.2,
                             wobble: Math.random() * Math.PI * 2,
                             wobbleSpeed: Math.random() * 0.03 + 0.01,
@@ -1033,86 +930,75 @@
                 }
                 createParticles();
 
-                function drawSparkle(p) {
-                    const ctx = state.canvasCtx;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255,200,120,${p.opacity})`;
-                    ctx.fill();
-                    ctx.shadowColor = 'rgba(255,180,80,0.6)';
-                    ctx.shadowBlur = p.size * 4;
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
-
-                function drawRain(p) {
-                    const ctx = state.canvasCtx;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p.x - 0.5, p.y + p.size * 8);
-                    ctx.strokeStyle = `rgba(150,200,240,${p.opacity})`;
-                    ctx.lineWidth = p.size;
-                    ctx.lineCap = 'round';
-                    ctx.stroke();
-                }
-
-                function drawSnow(p) {
-                    const ctx = state.canvasCtx;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
-                    ctx.fill();
-                    ctx.shadowColor = 'rgba(255,255,255,0.5)';
-                    ctx.shadowBlur = p.size * 3;
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
-
-                function drawMist(p) {
-                    const ctx = state.canvasCtx;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
-                    grad.addColorStop(0, `rgba(200,210,220,${p.opacity * 0.4})`);
-                    grad.addColorStop(1, 'rgba(200,210,220,0)');
-                    ctx.fillStyle = grad;
-                    ctx.fill();
-                }
+                const drawFns = {
+                    sparkle: (p) => {
+                        const ctx = state.canvasCtx;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255,200,120,${p.opacity})`;
+                        ctx.shadowColor = 'rgba(255,180,80,0.6)';
+                        ctx.shadowBlur = p.size * 4;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    },
+                    rain: (p) => {
+                        const ctx = state.canvasCtx;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p.x - 0.5, p.y + p.size * 8);
+                        ctx.strokeStyle = `rgba(150,200,240,${p.opacity})`;
+                        ctx.lineWidth = p.size;
+                        ctx.lineCap = 'round';
+                        ctx.stroke();
+                    },
+                    snow: (p) => {
+                        const ctx = state.canvasCtx;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+                        ctx.shadowColor = 'rgba(255,255,255,0.5)';
+                        ctx.shadowBlur = p.size * 3;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    },
+                    mist: (p) => {
+                        const ctx = state.canvasCtx;
+                        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+                        grad.addColorStop(0, `rgba(200,210,220,${p.opacity * 0.4})`);
+                        grad.addColorStop(1, 'rgba(200,210,220,0)');
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                        ctx.fillStyle = grad;
+                        ctx.fill();
+                    }
+                };
 
                 function animate() {
                     const ctx = state.canvasCtx;
                     ctx.clearRect(0, 0, state.canvasWidth, state.canvasHeight);
-                    const drawFn = state.particleType === 'rain' ? drawRain :
-                        state.particleType === 'snow' ? drawSnow :
-                        state.particleType === 'mist' ? drawMist : drawSparkle;
-
+                    const draw = drawFns[state.particleType] || drawFns.sparkle;
                     for (const p of state.particles) {
                         p.y += p.speedY;
                         p.x += p.speedX + Math.sin(p.wobble) * 0.4;
                         p.wobble += p.wobbleSpeed;
                         if (state.particleType === 'rain' && p.y > state.canvasHeight + 20) {
-                            p.y = -20;
-                            p.x = Math.random() * state.canvasWidth;
+                            p.y = -20; p.x = Math.random() * state.canvasWidth;
                         } else if (state.particleType === 'snow' && p.y > state.canvasHeight + 10) {
-                            p.y = -15;
-                            p.x = Math.random() * state.canvasWidth;
+                            p.y = -15; p.x = Math.random() * state.canvasWidth;
                         } else if (state.particleType === 'mist' && p.y > state.canvasHeight + 50) {
-                            p.y = -60;
-                            p.x = Math.random() * state.canvasWidth;
+                            p.y = -60; p.x = Math.random() * state.canvasWidth;
                         } else if (state.particleType === 'sparkle') {
-                            if (p.y > state.canvasHeight + 10) { p.y = -10;
-                                p.x = Math.random() * state.canvasWidth; }
+                            if (p.y > state.canvasHeight + 10) { p.y = -10; p.x = Math.random() * state.canvasWidth; }
                             if (p.x > state.canvasWidth + 10) p.x = -10;
                             if (p.x < -10) p.x = state.canvasWidth + 10;
                         }
-                        drawFn(p);
+                        draw(p);
                     }
                     state.animationId = requestAnimationFrame(animate);
                 }
                 animate();
 
-                // Update particles when type changes
-                window.updateParticleType = function(newType) {
+                window.updateParticleType = (newType) => {
                     if (state.particleType !== newType) {
                         state.particleType = newType;
                         createParticles();
@@ -1121,27 +1007,28 @@
             }
 
             // ──────────────────────────────────────
-            // API CALLS
+            // API CALLS (WITH BETTER ERROR HANDLING)
             // ──────────────────────────────────────
             async function fetchWeather(lat, lon) {
-                const url =
-                    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,pressure_msl,uv_index,visibility&hourly=temperature_2m,weather_code,precipitation_probability&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,precipitation_probability_max,uv_index_max&timezone=auto&forecast_days=7`;
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,pressure_msl,uv_index,visibility&hourly=temperature_2m,weather_code,precipitation_probability&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,precipitation_probability_max,uv_index_max&timezone=auto&forecast_days=7`;
                 const res = await fetch(url);
                 if (!res.ok) throw new Error('Weather fetch failed');
                 return await res.json();
             }
 
             async function fetchAirQuality(lat, lon) {
-                const url =
-                    `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi,pm2_5,pm10,nitrogen_dioxide,ozone&timezone=auto`;
-                const res = await fetch(url);
-                if (!res.ok) return null;
-                return await res.json();
+                try {
+                    const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi,pm2_5,pm10,nitrogen_dioxide,ozone&timezone=auto`;
+                    const res = await fetch(url);
+                    if (!res.ok) return null;
+                    return await res.json();
+                } catch (e) {
+                    return null;
+                }
             }
 
             async function geocodeCity(cityName) {
-                const url =
-                    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=5&language=en&format=json`;
+                const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=5&language=en&format=json`;
                 const res = await fetch(url);
                 if (!res.ok) throw new Error('Geocoding failed');
                 const data = await res.json();
@@ -1151,11 +1038,8 @@
 
             async function reverseGeocode(lat, lon) {
                 try {
-                    const url =
-                        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&accept-language=en`;
-                    const res = await fetch(url, {
-                        headers: { 'User-Agent': 'WeatherVueApp/1.0' }
-                    });
+                    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&accept-language=en`;
+                    const res = await fetch(url, { headers: { 'User-Agent': 'WeatherVueApp/1.0' } });
                     if (!res.ok) throw new Error('Reverse geocode failed');
                     const data = await res.json();
                     const addr = data.address || {};
@@ -1166,8 +1050,25 @@
             }
 
             // ──────────────────────────────────────
-            // RENDER FUNCTIONS
+            // RENDER FUNCTIONS (FIXED ACCENT COLOR)
             // ──────────────────────────────────────
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            function setAccentGlow(hexColor) {
+                const rgb = hexToRgb(hexColor);
+                if (rgb) {
+                    document.documentElement.style.setProperty('--accent-glow', `rgba(${rgb.r},${rgb.g},${rgb.b},0.45)`);
+                    document.documentElement.style.setProperty('--accent-sunny', hexColor);
+                }
+            }
+
             function renderHero(data) {
                 const current = data.current;
                 const code = current.weather_code;
@@ -1182,32 +1083,14 @@
                 heroLocation.innerHTML = `📍 ${state.cityName}${state.country ? ', ' + state.country : ''}`;
                 heroFeels.textContent = `Feels like ${formatTemp(feelsC)}`;
 
-                // Update particle type
-                const pt = getParticleType(weatherType);
-                if (typeof updateParticleType === 'function') updateParticleType(pt);
-
-                // Dynamic accent color
                 const accentMap = {
-                    'clear': '#ffb347',
-                    'partly-cloudy': '#e8b860',
-                    'cloudy': '#b0bec5',
-                    'rain': '#5b9bd5',
-                    'drizzle': '#6ba3d8',
-                    'thunderstorm': '#7c5cbf',
-                    'snow': '#d0dce8',
-                    'fog': '#a0aab4'
+                    'clear': '#ffb347', 'partly-cloudy': '#e8b860', 'cloudy': '#b0bec5',
+                    'rain': '#5b9bd5', 'drizzle': '#6ba3d8', 'thunderstorm': '#7c5cbf',
+                    'snow': '#d0dce8', 'fog': '#a0aab4'
                 };
                 const accent = accentMap[weatherType] || '#b0bec5';
-                document.documentElement.style.setProperty('--accent-glow', accent.replace(')', ',0.45)').replace(
-                    'rgb',
-                    'rgba').replace('#', 'rgba(');
-                if (accent.startsWith('#')) {
-                    const r = parseInt(accent.slice(1, 3), 16);
-                    const g = parseInt(accent.slice(3, 5), 16);
-                    const b = parseInt(accent.slice(5, 7), 16);
-                    document.documentElement.style.setProperty('--accent-glow', `rgba(${r},${g},${b},0.45)`);
-                }
-                document.documentElement.style.setProperty('--accent-sunny', accent);
+                setAccentGlow(accent);
+                if (typeof updateParticleType === 'function') updateParticleType(getParticleType(weatherType));
             }
 
             function renderHourly(data) {
@@ -1227,18 +1110,16 @@
                 for (let i = begin; i < Math.min(begin + displayCount, times.length); i++) {
                     const d = new Date(times[i]);
                     const hour = d.getHours();
-                    const timeLabel = hour === 0 ? '12 AM' : hour < 12 ? hour + ' AM' : hour === 12 ? '12 PM' : (hour -
-                        12) + ' PM';
+                    const timeLabel = hour === 0 ? '12 AM' : hour < 12 ? hour + ' AM' : hour === 12 ? '12 PM' : (hour - 12) + ' PM';
                     const wt = getWeatherType(codes[i]);
                     const tp = temps[i];
                     const pp = precip[i] || 0;
-                    html += `
-                <div class="hourly-card">
-                  <div class="time">${timeLabel}</div>
-                  <div class="icon-sm">${getSmallIconSVG(wt, 44)}</div>
-                  <div class="temp-sm">${formatTempShort(tp)}</div>
-                  ${pp > 0 ? `<div class="precip">💧${pp}%</div>` : ''}
-                </div>`;
+                    html += `<div class="hourly-card">
+                        <div class="time">${timeLabel}</div>
+                        <div class="icon-sm">${getSmallIconSVG(wt, 44)}</div>
+                        <div class="temp-sm">${formatTempShort(tp)}</div>
+                        ${pp > 0 ? `<div class="precip">💧${pp}%</div>` : ''}
+                    </div>`;
                 }
                 hourlyScroll.innerHTML = html;
             }
@@ -1261,14 +1142,13 @@
                     const low = allLows[i];
                     const leftPercent = ((low - globalMin) / range) * 100;
                     const widthPercent = ((high - low) / range) * 100;
-                    html += `
-                <div class="daily-row">
-                  <span class="day-name">${dayName}</span>
-                  <span class="day-icon">${getSmallIconSVG(wt, 36)}</span>
-                  <span class="temp-range"><span class="temp-low">${formatTempShort(low)}</span></span>
-                  <span class="temp-bar-wrap"><span class="temp-bar-fill" style="margin-left:${leftPercent}%;width:${Math.max(widthPercent,4)}%"></span></span>
-                  <span class="temp-range"><span class="temp-high">${formatTempShort(high)}</span></span>
-                </div>`;
+                    html += `<div class="daily-row">
+                        <span class="day-name">${dayName}</span>
+                        <span class="day-icon">${getSmallIconSVG(wt, 36)}</span>
+                        <span class="temp-range"><span class="temp-low">${formatTempShort(low)}</span></span>
+                        <span class="temp-bar-wrap"><span class="temp-bar-fill" style="margin-left:${leftPercent}%;width:${Math.max(widthPercent,4)}%"></span></span>
+                        <span class="temp-range"><span class="temp-high">${formatTempShort(high)}</span></span>
+                    </div>`;
                 }
                 dailyList.innerHTML = html;
             }
@@ -1284,47 +1164,43 @@
                     { icon: '👁️', value: (current.visibility / 1000).toFixed(1) + ' km', label: 'Visibility' },
                 ];
                 detailsGrid.innerHTML = details.map(d => `
-              <div class="detail-card">
-                <div class="detail-icon">${d.icon}</div>
-                <div class="detail-value">${d.value}</div>
-                <div class="detail-label">${d.label}</div>
-              </div>`).join('');
+                    <div class="detail-card">
+                        <div class="detail-icon">${d.icon}</div>
+                        <div class="detail-value">${d.value}</div>
+                        <div class="detail-label">${d.label}</div>
+                    </div>`).join('');
             }
 
             function renderSunriseSunset(data) {
                 const daily = data.daily;
+                if (!daily.sunrise || !daily.sunset || daily.sunrise.length === 0) return;
                 const sunrise = daily.sunrise[0];
                 const sunset = daily.sunset[0];
                 const srDate = new Date(sunrise);
                 const ssDate = new Date(sunset);
-                const now = new Date();
+                if (isNaN(srDate) || isNaN(ssDate)) return;
 
+                const now = new Date();
                 const srMin = srDate.getHours() * 60 + srDate.getMinutes();
                 const ssMin = ssDate.getHours() * 60 + ssDate.getMinutes();
                 const nowMin = now.getHours() * 60 + now.getMinutes();
-                const totalDayMin = ssMin - srMin;
+                const totalDayMin = ssMin - srMin || 1;
 
                 sunriseValue.textContent = srDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 sunsetValue.textContent = ssDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-                // Position sun dot on arc
-                let sunX = 250;
-                let sunY = 70;
-                if (nowMin <= srMin) {
-                    sunX = 40;
-                    sunY = 158;
-                } else if (nowMin >= ssMin) {
-                    sunX = 460;
-                    sunY = 158;
-                } else {
+                let sunX = 250, sunY = 70;
+                if (nowMin <= srMin) { sunX = 40; sunY = 158; }
+                else if (nowMin >= ssMin) { sunX = 460; sunY = 158; }
+                else {
                     const progress = (nowMin - srMin) / totalDayMin;
                     sunX = 40 + progress * 420;
-                    // Parabolic arc: y = a*(x-h)^2 + k, vertex at (250, 40), endpoints at (40,158) and (460,158)
-                    const t = progress; // 0 to 1
-                    sunY = 158 - Math.sin(t * Math.PI) * 118;
+                    sunY = 158 - Math.sin(progress * Math.PI) * 118;
                 }
-                sunDot.setAttribute('cx', sunX);
-                sunDot.setAttribute('cy', sunY);
+                if (sunDot) {
+                    sunDot.setAttribute('cx', sunX);
+                    sunDot.setAttribute('cy', sunY);
+                }
             }
 
             function renderAirQuality(aqData) {
@@ -1341,24 +1217,22 @@
                 const no2 = aqData.current.nitrogen_dioxide || 0;
                 const o3 = aqData.current.ozone || 0;
 
-                let aqiClass = 'good';
-                let category = 'Good';
-                if (aqi > 60) { aqiClass = 'unhealthy';
-                    category = 'Unhealthy'; } else if (aqi > 30) { aqiClass = 'moderate';
-                    category = 'Moderate'; }
+                let aqiClass = 'good', category = 'Good';
+                if (aqi > 60) { aqiClass = 'unhealthy'; category = 'Unhealthy'; }
+                else if (aqi > 30) { aqiClass = 'moderate'; category = 'Moderate'; }
 
                 aqiCircle.className = 'aqi-circle ' + aqiClass;
                 aqiValue.textContent = aqi;
                 aqiCategory.textContent = category;
                 aqiPollutants.innerHTML = `
-              <div class="aqi-pollutant">PM2.5<br><strong>${pm25.toFixed(1)}</strong> µg/m³</div>
-              <div class="aqi-pollutant">PM10<br><strong>${pm10.toFixed(1)}</strong> µg/m³</div>
-              <div class="aqi-pollutant">NO₂<br><strong>${no2.toFixed(1)}</strong> µg/m³</div>
-              <div class="aqi-pollutant">O₃<br><strong>${o3.toFixed(1)}</strong> µg/m³</div>`;
+                    <div class="aqi-pollutant">PM2.5<br><strong>${pm25.toFixed(1)}</strong> µg/m³</div>
+                    <div class="aqi-pollutant">PM10<br><strong>${pm10.toFixed(1)}</strong> µg/m³</div>
+                    <div class="aqi-pollutant">NO₂<br><strong>${no2.toFixed(1)}</strong> µg/m³</div>
+                    <div class="aqi-pollutant">O₃<br><strong>${o3.toFixed(1)}</strong> µg/m³</div>`;
             }
 
             // ──────────────────────────────────────
-            // MAIN LOAD
+            // MAIN LOAD (WITH SAFE FALLBACK)
             // ──────────────────────────────────────
             async function loadAllData(lat, lon, cityNameOverride) {
                 loadingOverlay.classList.remove('hidden');
@@ -1388,11 +1262,9 @@
                     renderSunriseSunset(weatherData);
                     renderAirQuality(airQualityData);
 
-                    // Reveal animations
                     setTimeout(() => {
                         document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
                     }, 200);
-
                 } catch (err) {
                     console.error('Failed to load weather data:', err);
                     heroTemp.textContent = '--°';
@@ -1403,35 +1275,25 @@
             }
 
             // ──────────────────────────────────────
-            // INITIAL LOCATION
+            // RELIABLE INITIAL LOCATION
             // ──────────────────────────────────────
             async function getInitialLocation() {
-                // Try browser geolocation
                 if ('geolocation' in navigator) {
                     try {
                         const pos = await new Promise((resolve, reject) => {
-                            navigator.geolocation.getCurrentPosition(resolve, reject, {
-                                timeout: 8000,
-                                enableHighAccuracy: false
-                            });
+                            navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000, enableHighAccuracy: false });
                         });
-                        return {
-                            lat: pos.coords.latitude,
-                            lon: pos.coords.longitude,
-                            city: null
-                        };
-                    } catch (e) {
-                        console.log('Geolocation denied or failed, trying IP fallback...');
-                    }
+                        return { lat: pos.coords.latitude, lon: pos.coords.longitude, city: null };
+                    } catch (e) { /* fallback */ }
                 }
-                // IP fallback
+                // IP fallback (more reliable endpoint)
                 try {
-                    const res = await fetch('https://ipapi.co/json/');
+                    const res = await fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0&localityLanguage=en');
                     const data = await res.json();
                     return {
                         lat: data.latitude || 40.7128,
                         lon: data.longitude || -74.006,
-                        city: data.city || null
+                        city: data.locality || data.city || null
                     };
                 } catch (e) {
                     return { lat: 40.7128, lon: -74.006, city: 'New York' };
@@ -1439,7 +1301,7 @@
             }
 
             // ──────────────────────────────────────
-            // SEARCH
+            // SEARCH & UNIT TOGGLE
             // ──────────────────────────────────────
             async function handleSearch() {
                 const query = searchInput.value.trim();
@@ -1447,29 +1309,18 @@
                 try {
                     loadingOverlay.classList.remove('hidden');
                     const result = await geocodeCity(query);
-                    const lat = result.latitude;
-                    const lon = result.longitude;
-                    const name = result.name || query;
-                    const country = result.country_code ? result.country_code.toUpperCase() : '';
-                    state.country = country;
-                    await loadAllData(lat, lon, name);
+                    await loadAllData(result.latitude, result.longitude, result.name || query);
                     searchInput.value = '';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } catch (err) {
                     alert('City not found. Please try another search.');
-                    console.error(err);
                 }
                 loadingOverlay.classList.add('hidden');
             }
 
             searchBtn.addEventListener('click', handleSearch);
-            searchInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') handleSearch();
-            });
+            searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSearch(); });
 
-            // ──────────────────────────────────────
-            // UNIT TOGGLE
-            // ──────────────────────────────────────
             unitToggle.addEventListener('click', () => {
                 state.unit = state.unit === 'celsius' ? 'fahrenheit' : 'celsius';
                 unitToggle.textContent = state.unit === 'celsius' ? '°C / °F' : '°F / °C';
@@ -1482,20 +1333,13 @@
             });
 
             // ──────────────────────────────────────
-            // SCROLL EFFECTS
+            // SCROLL REVEAL (FIXED SELECTOR)
             // ──────────────────────────────────────
             function handleScroll() {
                 const scrollY = window.scrollY;
-                if (scrollY > 60) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-
-                // Reveal on scroll
+                navbar.classList.toggle('scrolled', scrollY > 60);
                 document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight * 0.85) {
+                    if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
                         el.classList.add('visible');
                     }
                 });
@@ -1503,7 +1347,7 @@
             window.addEventListener('scroll', handleScroll, { passive: true });
 
             // ──────────────────────────────────────
-            // REFRESH DATA PERIODICALLY
+            // AUTO REFRESH (EVERY 15 MIN)
             // ──────────────────────────────────────
             function startAutoRefresh() {
                 setInterval(async () => {
@@ -1522,11 +1366,9 @@
                             renderSunriseSunset(weatherData);
                             renderAirQuality(airQualityData);
                             document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-                        } catch (e) {
-                            console.log('Auto-refresh failed, will retry.');
-                        }
+                        } catch (e) { /* silent */ }
                     }
-                }, 15 * 60 * 1000); // Every 15 minutes
+                }, 15 * 60 * 1000);
             }
 
             // ──────────────────────────────────────
@@ -1535,23 +1377,13 @@
             async function boot() {
                 initParticleCanvas();
                 const loc = await getInitialLocation();
-                if (loc.city) {
-                    state.cityName = loc.city;
-                }
+                if (loc.city) state.cityName = loc.city;
                 await loadAllData(loc.lat, loc.lon, loc.city);
                 startAutoRefresh();
-                // Initial scroll check
                 handleScroll();
             }
 
             boot();
-
-            console.log('%c🌤️ WeatherVue %cReady %c— Beautiful weather at your fingertips',
-                'font-size:1.4em;font-weight:bold;',
-                'font-size:1em;color:#4caf84;',
-                'color:#aaa;');
-            console.log('%cFeatures: %cAnimated particles • Glassmorphism • Real-time data • Scroll-snap • AQI • Sunrise arc',
-                'font-weight:bold;', 'font-weight:normal;color:#ffb347;');
         })();
     </script>
 </body>
